@@ -1,13 +1,11 @@
-from re import T
-from unicodedata import category
 from django.db import models
-from django.db.models.fields import CharField
 from django.utils.translation import gettext_lazy as _
 from django.utils.text import slugify
 from django.urls import reverse
 from django.contrib.auth.models import User
 from django.core.validators import RegexValidator, FileExtensionValidator, MinValueValidator, MaxValueValidator
 from django.db.models import CheckConstraint, Q, UniqueConstraint
+from django.db.models import Sum, Avg
 # Create your models here.
 
 
@@ -25,7 +23,7 @@ class Book(models.Model):
     publisher = models.CharField(max_length=100, blank=True, null=True, verbose_name=_("Publisher"))
     publish_dt = models.DateField(verbose_name=_("Published at"))
     description = models.TextField(max_length=1000, blank=True, null=True, verbose_name=_("Description"))
-    category = models.ForeignKey("Category", blank=True, null=True, on_delete=models.CASCADE, related_name="book_cat", verbose_name=_("Category"))
+    category = models.ManyToManyField("Category", blank=True, null=True, related_name="book_cat", verbose_name=_("Category"))
     uploaded_by = models.ForeignKey(User, on_delete=models.CASCADE, related_name="book_user", verbose_name=_("Uploaded by"))
     cover_img = models.ImageField(upload_to="cover_img/", blank=True, null=True, verbose_name=_("Cover image"))
     file = models.FileField(upload_to=user_directory_path, validators=[FileExtensionValidator(['pdf'], message=_("the file must be '.pdf'."))], verbose_name=_("Book file"))
@@ -97,3 +95,7 @@ class Rating(models.Model):
 
     #def get_absolute_url(self):
     #    return reverse('\', kwargs={'pk': self.pk})  
+
+    def rating_sum(self):
+        return  Rating.objects.filter(id=self.pk).aggregate(Avg('rating'))
+
