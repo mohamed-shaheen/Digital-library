@@ -5,7 +5,6 @@ from django.urls import reverse
 from django.contrib.auth.models import User
 from django.core.validators import RegexValidator, FileExtensionValidator, MinValueValidator, MaxValueValidator
 from django.db.models import CheckConstraint, Q, UniqueConstraint
-from django.db.models import Sum, Avg
 # Create your models here.
 
 
@@ -95,7 +94,4 @@ class Rating(models.Model):
 
     #def get_absolute_url(self):
     #    return reverse('\', kwargs={'pk': self.pk})  
-
-    def rating_avg(self):
-        return  Rating.objects.filter(id=self.pk).aggregate(Avg('rating'))
 

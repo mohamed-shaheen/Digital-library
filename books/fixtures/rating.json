@@ -1,0 +1,92 @@
+[
+{
+    "model": "books.rating",
+    "pk": 1,
+    "fields": {
+        "user": 1,
+        "book": 2,
+        "rating": "7",
+        "rating_dt": "2022-01-17T23:53:01.017Z"
+    }
+},
+{
+    "model": "books.rating",
+    "pk": 2,
+    "fields": {
+        "user": 1,
+        "book": 3,
+        "rating": "1.5",
+        "rating_dt": "2022-01-17T23:53:19.733Z"
+    }
+},
+{
+    "model": "books.rating",
+    "pk": 3,
+    "fields": {
+        "user": 1,
+        "book": 4,
+        "rating": "5.5",
+        "rating_dt": "2022-01-21T00:25:43.092Z"
+    }
+},
+{
+    "model": "books.rating",
+    "pk": 4,
+    "fields": {
+        "user": 1,
+        "book": 1,
+        "rating": "5.0",
+        "rating_dt": "2022-01-21T00:25:56.484Z"
+    }
+},
+{
+    "model": "books.rating",
+    "pk": 8,
+    "fields": {
+        "user": 4,
+        "book": 1,
+        "rating": "6.1",
+        "rating_dt": "2022-01-21T00:31:04.191Z"
+    }
+},
+{
+    "model": "books.rating",
+    "pk": 9,
+    "fields": {
+        "user": 4,
+        "book": 2,
+        "rating": "6",
+        "rating_dt": "2022-01-21T00:31:16.280Z"
+    }
+},
+{
+    "model": "books.rating",
+    "pk": 10,
+    "fields": {
+        "user": 4,
+        "book": 3,
+        "rating": "9.9",
+        "rating_dt": "2022-01-21T00:31:44.921Z"
+    }
+},
+{
+    "model": "books.rating",
+    "pk": 11,
+    "fields": {
+        "user": 2,
+        "book": 1,
+        "rating": "5.1",
+        "rating_dt": "2022-01-21T00:31:57.056Z"
+    }
+},
+{
+    "model": "books.rating",
+    "pk": 12,
+    "fields": {
+        "user": 2,
+        "book": 2,
+        "rating": "8",
+        "rating_dt": "2022-01-21T00:32:10.384Z"
+    }
+}
+]

@@ -1,0 +1,84 @@
+[
+{
+    "model": "books.book",
+    "pk": 1,
+    "fields": {
+        "title": "some title",
+        "added_dt": "2022-01-17T19:49:06.213Z",
+        "isbn": "1111111111111",
+        "author": "by me",
+        "publisher": null,
+        "publish_dt": "2022-01-17",
+        "description": "",
+        "uploaded_by": 1,
+        "cover_img": "",
+        "file": "books/user_mohamed/D_07.pdf",
+        "slug": "some-title",
+        "category": [
+            2,
+            5
+        ]
+    }
+},
+{
+    "model": "books.book",
+    "pk": 2,
+    "fields": {
+        "title": "Dalil book",
+        "added_dt": "2022-01-17T19:59:52.511Z",
+        "isbn": "1458745874",
+        "author": "by me",
+        "publisher": null,
+        "publish_dt": "2022-01-17",
+        "description": "",
+        "uploaded_by": 1,
+        "cover_img": "",
+        "file": "book/user_mohamed/E_05_Math_Eq_for_NN.pdf",
+        "slug": "dalil-book",
+        "category": [
+            1,
+            4
+        ]
+    }
+},
+{
+    "model": "books.book",
+    "pk": 3,
+    "fields": {
+        "title": "book",
+        "added_dt": "2022-01-17T20:01:33.621Z",
+        "isbn": "1458745874",
+        "author": "by me",
+        "publisher": null,
+        "publish_dt": "2022-01-17",
+        "description": "",
+        "uploaded_by": 1,
+        "cover_img": "cover_img/library_database2.png",
+        "file": "book/user_mohamed/D_04.pdf",
+        "slug": "book",
+        "category": []
+    }
+},
+{
+    "model": "books.book",
+    "pk": 4,
+    "fields": {
+        "title": "book title",
+        "added_dt": "2022-01-17T20:03:17.459Z",
+        "isbn": "14757854974",
+        "author": "by me",
+        "publisher": null,
+        "publish_dt": "2022-01-17",
+        "description": "",
+        "uploaded_by": 1,
+        "cover_img": "",
+        "file": "book/user_mohamed/D_05.pdf",
+        "slug": "book-title",
+        "category": [
+            2,
+            3,
+            4
+        ]
+    }
+}
+]

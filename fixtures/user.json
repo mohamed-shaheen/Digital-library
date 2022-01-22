@@ -1,0 +1,74 @@
+[
+{
+    "model": "auth.user",
+    "pk": 1,
+    "fields": {
+        "password": "some4words4as4password",
+        "last_login": "2022-01-20T21:27:48.793Z",
+        "is_superuser": true,
+        "username": "mohamed",
+        "first_name": "",
+        "last_name": "",
+        "email": "example@email.com",
+        "is_staff": true,
+        "is_active": true,
+        "date_joined": "2022-01-14T00:04:14.651Z",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "auth.user",
+    "pk": 2,
+    "fields": {
+        "password": "some3words3as3password",
+        "last_login": null,
+        "is_superuser": false,
+        "username": "ahmed",
+        "first_name": "",
+        "last_name": "",
+        "email": "example2@email.com",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2022-01-21T00:29:51.322Z",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "auth.user",
+    "pk": 3,
+    "fields": {
+        "password": "some2words2as2password",
+        "last_login": null,
+        "is_superuser": false,
+        "username": "mostafa",
+        "first_name": "",
+        "last_name": "",
+        "email": "example3@email.com",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2022-01-21T00:30:14.179Z",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "auth.user",
+    "pk": 4,
+    "fields": {
+        "password": "some1words1as1password",
+        "last_login": null,
+        "is_superuser": false,
+        "username": "abdo",
+        "first_name": "",
+        "last_name": "",
+        "email": "example4@email.com",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2022-01-21T00:30:31.675Z",
+        "groups": [],
+        "user_permissions": []
+    }
+}
+]
