@@ -95,3 +95,22 @@ class Rating(models.Model):
     #def get_absolute_url(self):
     #    return reverse('\', kwargs={'pk': self.pk})  
 
+
+
+class Comment(models.Model):
+
+    post_by = models.ForeignKey(User, on_delete=models.CASCADE, related_name="comment_user", verbose_name=_("User"))
+    post_book = models.ForeignKey(Book, on_delete=models.CASCADE, related_name="comment_book", verbose_name=_("Book"))
+    post = models.TextField(max_length=1000, verbose_name=_("Comment"))
+    reply = models.ForeignKey('self', on_delete=models.CASCADE, null=True, blank=True, verbose_name=_("Replies"))
+    post_at = models.DateTimeField(auto_now_add=True, verbose_name=_("Posted at"))
+
+
+    def __str__(self):
+        return '{0}comment by {1} on {2}'.format(self.pk,self.post_by.username, self.post_book.title)
+
+    class Meta:
+        verbose_name = _("Comment")
+        verbose_name_plural = _("Comments")
+
+
