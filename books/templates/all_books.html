@@ -1,1 +1,66 @@
 {% extends 'base.html' %}
+
+
+{% block main %}
+<main>
+
+    <section class="py-4 text-center container">
+      <div class="row py-lg-4">
+        <div class="col-lg-6 col-md-8 mx-auto">
+
+            <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">Filter</button>
+
+        </div>
+      </div>
+    </section>
+    <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+        <div class="offcanvas-header">
+          <h5 id="offcanvasRightLabel">filter</h5>
+
+        </div>
+        <div class="offcanvas-body">
+            <form  method="get">
+                <div class="row row-cols-2">
+                  {% csrf_token %}
+                  {% include  'includes/book-filter-form.html' %}
+                </div>
+                 <input class="btn btn-primary my-2" type="submit" />
+             </form>
+              <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+      </div>
+  
+    <div class="album py-5 bg-light">
+      <div class="container">
+  
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+        {% for book in books.qs %}
+          <div class="col">
+            <div class="card shadow-sm">
+              {% if book.cover_img %}  
+              <img class="bd-placeholder-img card-img-top" width="100%" height="225" src="{{book.cover_img.url}}" role="img"  preserveAspectRatio="xMidYMid slice" focusable="false" alt="{{book.title}} image"></img>
+              {% else %}
+              <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>{{book.title}} image</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">{{book.title}}</text></svg>
+              {% endif %}
+  
+              <div class="card-body">
+                <stron class="card-text">{{book.title}}</stron>  
+                <p class="card-text">{{book.description}}</p>
+                <div class="d-flex justify-content-between align-items-center">
+                  <div class="btn-group">
+                    <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
+                    <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+                  </div>
+                  <small class="text-muted">{{book.added_dt}}</small>
+                </div>
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  
+  </main>
+
+{% endblock main %}  

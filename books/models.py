@@ -9,10 +9,10 @@ from .validators import FileValidator
 # Create your models here.
 
 
-validate_file_book = FileValidator(max_size=1024 * 1024 * 6,  content_types=('application/pdf', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'))
+validate_file_book = FileValidator(max_size=1024 * 1024 * 60,  content_types=('application/pdf', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'))
 def user_directory_path(instance, filename):
     # file will be uploaded to MEDIA_ROOT/user_<id>/<filename>
-    return 'book/user_{0}/{1}'.format(instance.uploaded_by, filename)
+    return 'book/user_{0}/{1}/{2}'.format(instance.uploaded_by, instance.title, filename)
 
 class Book(models.Model):
 
@@ -25,7 +25,7 @@ class Book(models.Model):
     description = models.TextField(max_length=1000, blank=True, null=True, verbose_name=_("Description"))
     category = models.ManyToManyField("Category", blank=True, related_name="book_cat", verbose_name=_("Category"))
     uploaded_by = models.ForeignKey(User, on_delete=models.CASCADE, related_name="book_user", verbose_name=_("Uploaded by"))
-    cover_img = models.ImageField(upload_to="cover_img/", blank=True, null=True, verbose_name=_("Cover image"))
+    cover_img = models.ImageField(upload_to=user_directory_path, blank=True, null=True, verbose_name=_("Cover image"))
     file = models.FileField(upload_to=user_directory_path, validators=[FileExtensionValidator(['pdf', 'docx'], message=_("the file must be '.pdf' or '.docx'.")), validate_file_book], help_text=_("Book type : pdf or doc"), verbose_name=_("Book file"))
     slug = models.SlugField(blank=True, null=True, verbose_name=_("Slug"), allow_unicode=True)
 
