@@ -44,6 +44,8 @@ INSTALLED_APPS = [
     'django_summernote',
     'django_filters',
     'widget_tweaks',
+    'django_unicorn',
+    
     
 ]
 
