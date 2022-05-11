@@ -44,7 +44,7 @@
               {% endif %}
   
               <div class="card-body">
-                <stron class="card-text">{{book.title}}</stron>  
+                <stron class="card-text"><a href="{{book.get_absolute_url}}">{{book.title}}</a></stron>  
                 <p class="card-text">{{book.description}}</p>
                 <div class="d-flex justify-content-between align-items-center">
                   <div class="btn-group">

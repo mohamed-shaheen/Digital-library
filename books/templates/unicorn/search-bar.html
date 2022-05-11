@@ -19,10 +19,10 @@
             <div class="collapse navbar-collapse" id="navbarsExample04">
               <ul class="navbar-nav me-auto mb-2 mb-md-0">
                 <li class="nav-item">
-                  <a class="nav-link active" aria-current="page" href="#">Home</a>
+                  <a class="nav-link active" aria-current="page" href="{% url 'books:home' %}">Home</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="#">Link</a>
+                  <a class="nav-link" href="{% url 'books:all_books' %}">Books</a>
                 </li>
                 <li class="nav-item">
                   <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
@@ -30,7 +30,7 @@
                 <li class="nav-item dropdown">
                   <a class="nav-link dropdown-toggle" href="#" id="dropdown04" data-bs-toggle="dropdown" aria-expanded="false">Dropdown</a>
                   <ul class="dropdown-menu" aria-labelledby="dropdown04">
-                    <li><a class="dropdown-item" href="#">Action</a></li>
+                    <li><a class="dropdown-item" href="admin/">admin panel</a></li>
                     <li><a class="dropdown-item" href="#">Another action</a></li>
                     <li><a class="dropdown-item" href="#">Something else here</a></li>
                   </ul>
@@ -38,12 +38,12 @@
               </ul>
 
               <div class="me-3">
-                <input unicorn:model="search" id="listSearch" class="form-control" type="text" placeholder="Search" aria-label="Search">
+                <input unicorn:model.debounce-2000="search" id="listSearch" class="form-control" type="text" placeholder="Search" aria-label="Search">
               {% if books_s %}
                 <br>
                 <ul class="list-group me-5" style="width: 14rem; position: absolute;" id="myList">
                   {% for book_s in books_s %}  
-                  <li class="list-group-item list-group-item-action"><a class="list-group-item" href="#">{{book_s}}</a></li>
+                  <li class="list-group-item list-group-item-action"><a class="list-group-item" href="{{book_s.get_absolute_url}}">{{book_s}}</a></li>
                   {% endfor %}
                 </ul>
               {% endif %} 

@@ -1,3 +1,4 @@
+from enum import unique
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 from django.utils.text import slugify
@@ -27,20 +28,21 @@ class Book(models.Model):
     uploaded_by = models.ForeignKey(User, on_delete=models.CASCADE, related_name="book_user", verbose_name=_("Uploaded by"))
     cover_img = models.ImageField(upload_to=user_directory_path, blank=True, null=True, verbose_name=_("Cover image"))
     file = models.FileField(upload_to=user_directory_path, validators=[FileExtensionValidator(['pdf', 'docx'], message=_("the file must be '.pdf' or '.docx'.")), validate_file_book], help_text=_("Book type : pdf or doc"), verbose_name=_("Book file"))
-    slug = models.SlugField(blank=True, null=True, verbose_name=_("Slug"), allow_unicode=True)
+    slug = models.SlugField(blank=True, null=True, verbose_name=_("Slug"), unique=True, allow_unicode=True)
 
 
     def save(self, *args, **kwargs):
         if not self.slug :
-           self.slug = slugify(self.title, allow_unicode=True)
+           #unique_slug= "%s %s" %(self.title, self.added_dt[:3]) 
+           self.slug = slugify(self.title, allow_unicode=True)+"-"+str(self.publish_dt)[:4]
         super(Book, self).save(*args, **kwargs)
 
     class Meta:
         verbose_name = _("Book")
         verbose_name_plural = _("Books") 
 
-    #def get_absolute_url(self):
-    #    return reverse("", kwargs={"id" : self.id, "slug": self.slug})
+    def get_absolute_url(self):
+        return reverse("books:book_detail", kwargs={"slug": self.slug})
 
     def __str__(self):
         return self.title[:15]
