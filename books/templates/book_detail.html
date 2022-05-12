@@ -3,56 +3,320 @@
 
 
 
-
+{% block css%}
+{% load static %}
+        <link href="{% static 'css\book.css' %}" rel="stylesheet">
+        <link href="{% static 'fontawesomefree/css/all.min.css' %}" rel="stylesheet" type="text/css">
+        
+{% endblock css%}
 
 
 {% block main %}
 
 
-    <section class="py-5 text-center container">
-      <div class="row py-lg-5">
-        <div class="col-lg-6 col-md-8 mx-auto">
-          <h1 class="fw-light">library zone</h1>
-          <p class="lead text-muted">is a non-profit library of millions of free books, make your self free to search about your favorite book.</p>
-          <p>
-            <a href="#" class="btn btn-primary my-2">Main call to action</a>
-            <a href="#" class="btn btn-secondary my-2">Secondary action</a>
-          </p>
-        </div>
-      </div>
-    </section>
-  
-    <div class="album py-5 bg-light">
+    <section class="inner-page pt-4">
       <div class="container">
-  
-        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+        <div class=" m-2">
+                <div class="flex-row row">
+                            <div class="col-md-6 col-lg-6 mt-4">
+                            <h3>{{book.title}} </h3>
+                            <h4 class="mt-3">Category : 
+                              {% for category in book.category.all %}
+                                {{category.title}} -  
+                              {% endfor %}
+                            </h4>
+                            <h4 class="mt-3"> Author: {{book.author}}  </h4>
+                            <h4 class="mt-3">
+                              Publisher:
+                              {% if book.publisher %}
+                                {{book.publisher}}
+                              {% else %}
+                                UKNOWN
+                              {% endif %}  
+                            </h4>
+                            <h4 class="mt-3">Publish at:{{book.publish_dt}}</h4>
+                            <h4 class="mt-3">ISBN: 
+                                    {% if book.isbn %}
+                                        {{book.isbn}}
+                                    {% else %}
+                                    UKNOWN
+                                    {% endif %}     
+                            </h4>
+                            <h4 class="mt-3"><a href="{{book.file.url}}" download="True">Download</a></h4>
+                            </div>
+                            <div class="col-md-6 col-lg-6 mt-4">
+                                <div class="embed-responsive embed-responsive-16by9">
+                                            {% if book.cover_img %}  
+                                            <img class="embed-responsive-item" width="100%" height="350" src="{{book.cover_img.url}}" role="img"  preserveAspectRatio="xMidYMid slice" focusable="false" alt="{{book.title}} image"></img>
+                                            {% else %}
+                                            <svg class="embed-responsive-item" width="100%" height="350" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>{{book.title}} image</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">{{book.title}}</text></svg>
+                                            {% endif %}
+                                </div>
+                            </div> 
+                    </div>
+                    <hr>
+                    <div class="flex-row row">
+                    
+                     {# start rating section #}
+                    <div class="col-md-6 col-lg-6 mt-4">
+                      <div class="container-fluid px-1 py-2 mx-auto">
+                        <div class="row justify-content-center">
+                          <div class="col-xl-8 col-lg-9 col-md-10 col-12 text-center mb-5">
+                            <div class="card card-rating">
+                              <div class="cirle-img">
+                                <img class="rating-img" src="{% static 'img/sky-rating.jpg'%}">
+                                <div class="rating-on-img">
+                                  <h3 class="head-rate">4.7</h3>
+                                  <h3 class="subhead-rate">out of 5</h3>
+                                </div>
+                              </div>
+                              <div class="heading0 mb-3 text-center">
+                                <h2>Reviews, by real people</h2>
+                              </div>
+                              <div class="rating-bar0 justify-content-center">
+                                <table class="text-left mx-auto">
+                                  <tr>
+                                    <td class="rating-label">Excellent</td>
+                                    <td class="rating-bar">
+                                      <div class="bar-container">
+                                          <div class="bar-5"></div>
+                                        </div>
+                                    </td>
+                                    <td>123</td>
+                                  </tr>
+                                  <tr>
+                                    <td class="rating-label">Good</td>
+                                    <td class="rating-bar">
+                                      <div class="bar-container">
+                                          <div class="bar-4"></div>
+                                        </div>
+                                    </td>
+                                    <td>23</td>
+                                  </tr>
+                                  <tr>
+                                    <td class="rating-label">Average</td>
+                                    <td class="rating-bar">
+                                      <div class="bar-container">
+                                          <div class="bar-3"></div>
+                                        </div>
+                                    </td>
+                                    <td>10</td>
+                                  </tr>
+                                  <tr>
+                                    <td class="rating-label">Poor</td>
+                                    <td class="rating-bar">
+                                      <div class="bar-container">
+                                          <div class="bar-2"></div>
+                                        </div>
+                                    </td>
+                                    <td>3</td>
+                                  </tr>
+                                  <tr>
+                                    <td class="rating-label">Brutal</td>
+                                    <td class="rating-bar">
+                                      <div class="bar-container">
+                                          <div class="bar-1"></div>
+                                        </div>
+                                    </td>
+                                    <td>0</td>
+                                  </tr>
+                                </table>
+                              </div>
+                              {# start rating reqest #}
+                              <div class="container d-flex justify-content-center mt-6">
+          
 
-          <div class="col">
-            <div class="card shadow-sm">
-              {% if book.cover_img %}  
-              <img class="bd-placeholder-img card-img-top" width="100%" height="225" src="{{book.cover_img.url}}" role="img"  preserveAspectRatio="xMidYMid slice" focusable="false" alt="{{book.title}} image"></img>
-              {% else %}
-              <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>{{book.title}} image</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">{{book.title}}</text></svg>
-              {% endif %}
-  
-              <div class="card-body">
-                <stron class="card-text"><a href="{{book.get_absolute_url}}">{{book.title}}</a></stron>  
-                <p class="card-text">{{book.description}}</p>
-                <div class="d-flex justify-content-between align-items-center">
-                  <div class="btn-group">
-                    <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                    <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+                                <div class="row">
+                                
+                                  <div class="col-md-12">
+                                
+                                    <div class="stars">
+                                
+                                  <form action="">
+                                
+                                    <input class="star star-5" id="star-5" type="radio" name="star"/>
+                                
+                                    <label class="star star-5" for="star-5"></label>
+                                
+                                    <input class="star star-4" id="star-4" type="radio" name="star"/>
+                                
+                                    <label class="star star-4" for="star-4"></label>
+                                
+                                    <input class="star star-3" id="star-3" type="radio" name="star"/>
+                                
+                                    <label class="star star-3" for="star-3"></label>
+                                
+                                    <input class="star star-2" id="star-2" type="radio" name="star"/>
+                                
+                                    <label class="star star-2" for="star-2"></label>
+                                
+                                    <input class="star star-1" id="star-1" type="radio" name="star"/>
+                                
+                                    <label class="star star-1" for="star-1"></label>
+                                
+                                  </form>
+                                
+                                </div>
+                                
+                                
+                                    
+                                  </div>
+                                  
+                                
+                                </div>
+                                
+                                </div>
+                                {# end rating request #}
+                          </div>
+                        </div>
+
+                      
+
+                            </div>
+                          </div>
+                        </div>
+                        {# end rating section #}
+                        {# start comment section #}
+                    <div class="col-md-6 col-lg-6 mt-4"> 
+                      <div class="container mt-5 mb-5">
+
+                        <div class="row height d-flex justify-content-center align-items-center">
+            
+                          <div class="col-md-12">
+            
+                            <div class="card card-comment">
+            
+                              <div class="p-3">
+            
+                                <h6>Comments</h6>
+                                
+                              </div>
+            
+                              <div class="mt-3 d-flex flex-row align-items-center p-3 form-color">
+            
+                                <img src="https://i.imgur.com/zQZSWrt.jpg" width="50" class="rounded-circle mr-2">
+                                <input type="text" class="form-control" placeholder="Enter your comment...">
+            
+                              </div>
+            
+            
+                              <div class="mt-2">
+            
+                                <div class="d-flex flex-row p-3">
+            
+                                  <img src="https://i.imgur.com/zQZSWrt.jpg" width="40" height="40" class="rounded-circle mr-3">
+            
+                                  <div class="w-100">
+            
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <div class="d-flex flex-row align-items-center">
+                                          <span class="mr-2">Brian selter</span>
+                                          <small class="c-badge">Top Comment</small>
+                                        </div>
+                                        <small>12h ago</small>
+                                  </div>
+            
+                                  <p class="text-justify comment-text mb-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam</p>
+            
+                                  <div class="d-flex flex-row user-feed">
+            
+                                    <span class="wish"><i class="fa fa-heartbeat mr-2"></i>24</span>
+                                    <span class="ml-3"><i class="fa fa-comments-o mr-2"></i>Reply</span>
+            
+                                    
+                                  </div>
+                                  
+                                </div>
+                                
+            
+                              </div>
+            
+            
+                              <div class="d-flex flex-row p-3">
+            
+                                  <img src="https://i.imgur.com/3J8lTLm.jpg" width="40" height="40" class="rounded-circle mr-3">
+            
+                                  <div class="w-100">
+            
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <div class="d-flex flex-row align-items-center">
+                                          <span class="mr-2">Seltos Majito</span>
+                                          <small class="c-badge">Top Comment</small>
+                                        </div>
+                                        <small>2h ago</small>
+                                  </div>
+            
+                                  <p class="text-justify comment-text mb-0">Tellus in hac habitasse platea dictumst vestibulum. Lectus nulla at volutpat diam ut venenatis tellus. Aliquam etiam erat velit scelerisque in dictum non consectetur. Sagittis nisl rhoncus mattis rhoncus urna neque viverra justo nec. Tellus cras adipiscing enim eu turpis egestas pretium aenean pharetra. Aliquam faucibus purus in massa.</p>
+            
+                                  <div class="d-flex flex-row user-feed">
+            
+                                    <span class="wish"><i class="fa fa-heartbeat mr-2"></i>14</span>
+                                    <span class="ml-3"><i class="fa fa-comments-o mr-2"></i>Reply</span>
+            
+                                    
+                                  </div>
+                                  
+                                </div>
+                                
+            
+                              </div>
+            
+            
+            
+                              <div class="d-flex flex-row p-3">
+            
+                                  <img src="https://i.imgur.com/agRGhBc.jpg" width="40" height="40" class="rounded-circle mr-3">
+            
+                                  <div class="w-100">
+            
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <div class="d-flex flex-row align-items-center">
+                                          <span class="mr-2">Maria Santola</span>
+                                          <small class="c-badge">Top Comment</small>
+                                        </div>
+                                        <small>12h ago</small>
+                                  </div>
+            
+                                  <p class="text-justify comment-text mb-0"> Id eu nisl nunc mi ipsum faucibus. Massa massa ultricies mi quis hendrerit dolor. Arcu bibendum at varius vel pharetra vel turpis nunc eget. Habitasse platea dictumst quisque sagittis purus sit amet volutpat. Urna condimentum mattis pellentesque id.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam</p>
+            
+                                  <div class="d-flex flex-row user-feed">
+            
+                                    <span class="wish"><i class="fa fa-heartbeat mr-2"></i>54</span>
+                                    <span class="ml-3"><i class="fa fa-comments-o mr-2"></i>Reply</span>
+            
+                                    
+                                  </div>
+                                  
+                                </div>
+                                
+            
+                              </div>
+                              
+                            </div>
+                            
+                          </div>
+                          
+                        </div>
+                        </div>
+                        
+                      </div>
+                      
+                    </div>
+                    {# end comment section #}
+                      </div>
+                      
+                    </div>
                   </div>
-                  <small class="text-muted">{{book.added_dt}}</small>
-                </div>
-              </div>
-            </div>
-          </div>
+                  
+                  </div>
+               
 
-        </div>
-      </div>
-    </div>
   
 
 
 {% endblock main %}  
+
+{% block js %}
+   <script src="{% static 'js\jquery-3.6.0.min.js' %}"></script>
+   {# <script src="{% static 'fontawesomefree/js/all.min.js' %}"></script> #}
+{% endblock js %}
