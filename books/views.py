@@ -23,7 +23,7 @@ def all_books(request):
 
 def book_detail(request, slug):
     book = get_object_or_404(Book, slug=slug)
-    comments = Comment.objects.all().filter(post_book__exact=book)
+    #comments = Comment.objects.all().filter(post_book__exact=book)
 
-    context = {'book' : book, 'comments' : comments}
+    context = {'book' : book}
     return render(request, 'book_detail.html', context)
