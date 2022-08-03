@@ -23,13 +23,15 @@
                 
                 </form>
                 </div> 
+                {% if user.is_authenticated %} 
                 <div class="row mt-2">
-                <button class="btn btn-outline-primary row" type="submit" unicorn:click="comments_v(15)">Comment</button>
+                <button class="btn btn-outline-primary row" type="submit" unicorn:click="comments_submit">Comment</button>
+                </div>
+                {% endif %}
                 </div>
                 </div>
-                </div>
-            {% if book_v %}
-           {% for comment in book_v %}
+            {% if comments_context %}
+           {% for comment in comments_context %}
                 <div class="mt-2">
 
                   <div class="d-flex flex-row p-3">
@@ -46,13 +48,7 @@
 
                     <p class="text-justify comment-text mb-0">{{comment.post|safe}}</p>
 
-                    <div class="d-flex flex-row user-feed">
 
-                      <span class="wish"><i class="fa fa-heartbeat mr-2"></i>24</span>
-                      <span class="ml-3"><i class="fa fa-comments-o mr-2"></i>Reply</span>
-
-                      
-                    </div>
                     
                   </div>
                   

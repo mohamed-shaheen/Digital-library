@@ -179,7 +179,7 @@
 
                         {# start comment section #}
                         {% unicorn_scripts %}   
-                        {% unicorn "comment-book"  %}
+                        {% unicorn "comment-book" bookid=book.id  %}
                         {% csrf_token %}
                  {# end comment section #}
                       </div>

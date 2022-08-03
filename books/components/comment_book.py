@@ -12,25 +12,28 @@ class CommentBookView(UnicornView):
     comments: Comment = None
     book: Book = None
     
-    def mount(self):
-        self.comments = Comment.objects.all()
-        return super().mount()
+    def __init__(self, *args, **kwargs):
+        super().__init__(**kwargs)  # calling super is required
+        self.bookid = kwargs.get("bookid") 
+        self.comments = Comment.objects.filter(post_book_id__exact=self.bookid)
+
 
         
-    def comments_v(self, num=0):
-        if num > 0:
-           self.bookid=num
-        self.book = Book.objects.get(id=self.bookid)
-        Comment.objects.create(
-            post_by=self.request.user,
-            post_book=self.book,
-            post=self.comment_post
-        )
-        print(self.bookid)
-        self.comment_post= ""
-        self.comments = Comment.objects.filter(post_book_id__exact=self.book.id)
+    def comments_submit(self):
+
+        if self.comment_post:
+            self.book = Book.objects.get(id=self.bookid)
+            Comment.objects.create(
+                post_by=self.request.user,
+                post_book=self.book,
+                post=self.comment_post
+            ) 
+            self.comment_post= ""
+            self.comments = Comment.objects.filter(post_book_id__exact=self.book.id)
+        else:
+            pass    
 
 
 
-    def book_v(self):
+    def comments_context(self): 
         return self.comments    

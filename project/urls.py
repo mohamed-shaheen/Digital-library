@@ -23,6 +23,7 @@ urlpatterns = [
     path('summernote/', include('django_summernote.urls')),
     path("unicorn/", include("django_unicorn.urls")),
     path('', include('books.urls' , namespace='books')),
+    path('', include('libraryAuth.urls' , namespace='auth')),
 ]
 
 

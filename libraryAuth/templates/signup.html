@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block title %}
+
+Sing up
+{% endblock title %}
+
+{% block main %}
+
+
+
+
+
+    <section class="inner-page pt-4 auth-forms">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-lg-8 col-md-10 col-sm-12">
+               <div class="card my-2" >
+                    <div class="card-body">
+                          <h3 class="card-title">signup</h3> 
+                          <form method="post" novalidate >
+                              {% csrf_token %}
+                              {% include  'includes/form.html' %}
+                              
+                              <button type="submit" class="btn btn-dark btn-lg btn-block">Creat New User<i class="fa fa-user-plus mr-2 mx-1"></i></button>  
+                        </form>
+                    </div>
+                    <div class="card-footer text-muted text-center">
+                      translate "Already have an account? <a href="{%url 'auth:login'%}">Login</a>
+                   </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+    </section>
+
+
+
+
+{% endblock main %}
