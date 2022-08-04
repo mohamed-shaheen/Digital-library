@@ -15,7 +15,7 @@ class CommentBookView(UnicornView):
     def __init__(self, *args, **kwargs):
         super().__init__(**kwargs)  # calling super is required
         self.bookid = kwargs.get("bookid") 
-        self.comments = Comment.objects.filter(post_book_id__exact=self.bookid)
+        self.comments = Comment.objects.filter(post_book_id__exact=self.bookid).order_by('-post_at')
 
 
         
@@ -29,7 +29,7 @@ class CommentBookView(UnicornView):
                 post=self.comment_post
             ) 
             self.comment_post= ""
-            self.comments = Comment.objects.filter(post_book_id__exact=self.book.id)
+            self.comments = Comment.objects.filter(post_book_id__exact=self.book.id).order_by('-post_at')
         else:
             pass    
 

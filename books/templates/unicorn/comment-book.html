@@ -16,6 +16,7 @@
 
                 <div class="mt-3 d-flex flex-row align-items-center p-3 form-color">
                 <div class="container">
+                {% if user.is_authenticated %} 
                 <div class="row"> 
                 <form>
                   
@@ -23,10 +24,15 @@
                 
                 </form>
                 </div> 
-                {% if user.is_authenticated %} 
+                
                 <div class="row mt-2">
                 <button class="btn btn-outline-primary row" type="submit" unicorn:click="comments_submit">Comment</button>
                 </div>
+                {% else%}
+                <div class="alert alert-primary" role="alert">
+                  <i class="fa-solid fa-right-to-bracket"></i> Pleace <a href="{%url 'auth:login'%}"><strong>Login</strong></a> to comment
+               </div>
+                
                 {% endif %}
                 </div>
                 </div>
@@ -89,4 +95,4 @@
         </div>
     </div>    
 
-
+</div>

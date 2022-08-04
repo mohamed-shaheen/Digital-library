@@ -42,7 +42,7 @@
                                     UKNOWN
                                     {% endif %}     
                             </h4>
-                            <h4 class="mt-3"><a href="{{book.file.url}}" download="True">Download</a></h4>
+                            <h4 class=" btn btn-primary mt-3"><a href="{{book.file.url}}" download="True"><i class="fa fa-download"></i> Download</a></h4>
                             </div>
                             <div class="col-md-6 col-lg-6 mt-4">
                                 <div class="embed-responsive embed-responsive-16by9">
@@ -66,7 +66,7 @@
                               <div class="cirle-img">
                                 <img class="rating-img" src="{% static 'img/sky-rating.jpg'%}">
                                 <div class="rating-on-img">
-                                  <h3 class="head-rate">4.7</h3>
+                                  <h3 class="head-rate">{{rating.rating__avg|floatformat}}</h3>
                                   <h3 class="subhead-rate">out of 5</h3>
                                 </div>
                               </div>
@@ -78,47 +78,47 @@
                                   <tr>
                                     <td class="rating-label">Excellent</td>
                                     <td class="rating-bar">
-                                      <div class="bar-container">
-                                          <div class="bar-5"></div>
-                                        </div>
+                                      <div class="progress">
+                                        <div class="progress-bar bg-warning" role="progressbar" aria-label="Warning example" style="width: 75%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+                                      </div>
                                     </td>
-                                    <td>123</td>
+                                    <td>{{people.exl}}</td>
                                   </tr>
                                   <tr>
                                     <td class="rating-label">Good</td>
                                     <td class="rating-bar">
-                                      <div class="bar-container">
-                                          <div class="bar-4"></div>
-                                        </div>
+                                      <div class="progress">
+                                        <div class="progress-bar bg-warning" role="progressbar" aria-label="Warning example" style="width: 75%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+                                      </div>
                                     </td>
-                                    <td>23</td>
+                                    <td>{{people.good}}</td>
                                   </tr>
                                   <tr>
                                     <td class="rating-label">Average</td>
                                     <td class="rating-bar">
-                                      <div class="bar-container">
-                                          <div class="bar-3"></div>
-                                        </div>
+                                      <div class="progress">
+                                        <div class="progress-bar bg-warning" role="progressbar" aria-label="Warning example" style="width: 75%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+                                      </div>
                                     </td>
-                                    <td>10</td>
+                                    <td>{{people.avr}}</td>
                                   </tr>
                                   <tr>
                                     <td class="rating-label">Poor</td>
                                     <td class="rating-bar">
-                                      <div class="bar-container">
-                                          <div class="bar-2"></div>
-                                        </div>
+                                      <div class="progress">
+                                        <div class="progress-bar bg-warning" role="progressbar" aria-label="Warning example" style="width: 75%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+                                      </div>
                                     </td>
-                                    <td>3</td>
+                                    <td>{{people.poor}}</td>
                                   </tr>
                                   <tr>
                                     <td class="rating-label">Brutal</td>
                                     <td class="rating-bar">
-                                      <div class="bar-container">
-                                          <div class="bar-1"></div>
-                                        </div>
+                                      <div class="progress">
+                                        <div class="progress-bar bg-warning" role="progressbar" aria-label="Warning example" style="width: 22%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+                                      </div>
                                     </td>
-                                    <td>0</td>
+                                    <td>{{people.bru}}</td>
                                   </tr>
                                 </table>
                               </div>
@@ -132,27 +132,29 @@
                                 
                                     <div class="stars">
                                 
-                                  <form action="">
+                                  <form action="{{book.get_absolute_url}}" method="post">
                                 
-                                    <input class="star star-5" id="star-5" type="radio" name="star"/>
+                                    <input class="star star-5" value="5" id="star-5" type="radio" name="star"/>
                                 
                                     <label class="star star-5" for="star-5"></label>
                                 
-                                    <input class="star star-4" id="star-4" type="radio" name="star"/>
+                                    <input class="star star-4" value="4" id="star-4" type="radio" name="star"/>
                                 
                                     <label class="star star-4" for="star-4"></label>
                                 
-                                    <input class="star star-3" id="star-3" type="radio" name="star"/>
+                                    <input class="star star-3" value="3" id="star-3" type="radio" name="star"/>
                                 
                                     <label class="star star-3" for="star-3"></label>
                                 
-                                    <input class="star star-2" id="star-2" type="radio" name="star"/>
+                                    <input class="star star-2" value="2" id="star-2" type="radio" name="star"/>
                                 
                                     <label class="star star-2" for="star-2"></label>
                                 
-                                    <input class="star star-1" id="star-1" type="radio" name="star"/>
+                                    <input class="star star-1" value="1" id="star-1" type="radio" name="star"/>
                                 
                                     <label class="star star-1" for="star-1"></label>
+                                    {% csrf_token %}
+                                    <button type="submit" class="btn btn-primary m-2">Submit</button>
                                 
                                   </form>
                                 
@@ -182,7 +184,7 @@
                         {% unicorn "comment-book" bookid=book.id  %}
                         {% csrf_token %}
                  {# end comment section #}
-                      </div>
+                    </div>
                       
                     </div>
                   </div>
@@ -190,7 +192,7 @@
                   </div>
                
 
-  
+    </section>
 
 
 {% endblock main %}  
