@@ -1,16 +1,25 @@
 {% extends 'base.html' %}
 {% block title %}
-{# title #}
+
 Login
 {% endblock title %}
+
+
+
+{% block css%}
+{% load static %}
+        <link href="{% static 'css\book.css' %}" rel="stylesheet">
+        <link href="{% static 'fontawesomefree/css/all.min.css' %}" rel="stylesheet" type="text/css">
+        
+{% endblock css%}
 
 {% block main %}
 
 
 
 
-    <section class="inner-page pt-4 auth-forms">
-      <div class="container">
+<section class="inner-page pt-4"> 
+  <div class="container">
         <div class="row justify-content-center">
            <div class="col-lg-8 col-md-10 col-sm-12">
                <div class="card my-2" >
@@ -20,7 +29,7 @@ Login
                               {% csrf_token %}
                               {% include  'includes/form.html' %}
                               
-                              <button type="submit" class="btn btn-dark btn-lg btn-block">login<i class="fa fa-sign-in mr-2 mx-1"></i></button>  
+                              <button type="submit" class="btn btn-dark btn-lg btn-block m-3">login<i class="fa fa-sign-in mr-2 mx-1"></i></button>  
                         </form>
                     </div>
                     <div class="card-footer text-muted text-center">

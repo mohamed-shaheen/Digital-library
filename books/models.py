@@ -95,8 +95,7 @@ class Rating(models.Model):
             UniqueConstraint(fields=['user', 'book'], name='rating_once')
         ]
 
-    #def get_absolute_url(self):
-    #    return reverse('\', kwargs={'pk': self.pk})  
+
 
 
 
