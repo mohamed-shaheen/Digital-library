@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 
-
+{% block title %}library zone · Home{% endblock title %}
 
 
 {% block css%}
@@ -20,7 +20,7 @@
           <h1 class="fw-light">library zone</h1>
           <p class="lead text-muted">is a non-profit library of millions of free books, make your self free to search about your favorite book.</p>
           <p>
-            <a href="#" class="btn btn-primary my-2">Main call to action</a>
+            <a href="{% url 'books:book_add' %}" class="btn btn-primary my-2">Share Book</a>
             <a href="#" class="btn btn-secondary my-2">Secondary action</a>
           </p>
         </div>

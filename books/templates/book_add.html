@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+
+{% block title %}library zone · Add Book{% endblock title %}
+
+
+{% block css%}
+{% load static %}
+        <link href="{% static 'css\book.css' %}" rel="stylesheet">
+        <link href="{% static 'fontawesomefree/css/all.min.css' %}" rel="stylesheet" type="text/css">
+        
+{% endblock css%}
+
+{% block main %}
+
+  
+    <div class="album py-5 bg-light">
+      <div class="container">
+  
+        <div class="row justify-content-center">
+            <div class="col-lg-8 col-md-10 col-sm-12">
+                 <div class="card my-2" >
+                      <div class="card-body">
+                            <h3 class="card-title">Add Book</h3> 
+                            <form method="post" novalidate >
+                                {% csrf_token %}
+                                {% include  'includes/share-book-form.html' %}
+                                
+                                <button type="submit" class="btn btn-dark btn-lg btn-block m-3">Share Book <i class="fa-solid fa-share"></i></button>  
+                          </form>
+                      </div>
+
+                    </div>
+                </div>
+            </div>
+      </div>
+    </div>
+  
+
+
+{% endblock main %}  

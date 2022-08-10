@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% load unicorn %}
 
-
+{% block title %}library zone · {{book.title|truncatechars:20}} {% endblock title %}
 
 {% block css%}
 {% load static %}

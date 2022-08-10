@@ -1,0 +1,50 @@
+{%load widget_tweaks%}
+
+{% if form.non_field_errors%}
+<div class="alert alert-danger" role="alerts">    
+   {%for error in form.non_field_errors%}
+      <p {%if forloop.last%} class="mb-0" {%endif%}>{{error}}</p>
+    {%endfor%}
+</div>    
+{%endif%}
+
+{{ form.Cover_image.field.label_tag |add_class:"input-group mb-3" }}
+
+{% for field in form%}
+    <div class="form-group">
+       <h5>{{field.label_tag}}</h5> 
+        {%if form.is_bound%}
+            {%if field.errors%}
+            {% if field.id_for_label == 'id_category'%}
+                {%render_field field class="form-select is-invalid"%}
+                {%for error in field.errors%}
+                        <div class="invalid-feedback">{{error}}</div>
+                {%endfor%}
+            {% else %}
+                {%render_field field class="form-control is-invalid"%}
+                {%for error in field.errors%}
+                        <div class="invalid-feedback">{{error}}</div>
+                {%endfor%}
+            {% endif %}    
+            {%else%}
+              {% if field.id_for_label == 'id_category'%}
+              {%render_field field class="form-select is-valid"%}
+              {% else %}
+                {%render_field field class="form-control is-valid"%}
+                {% endif %}
+            {%endif%}         
+        {% else %}
+           {% if field.id_for_label == 'id_category'%}
+             {%render_field field class="form-select" size="3" %}
+           {% else %}
+              {%render_field field class="form-control" %}
+            {% endif%}
+        {%endif%}    
+
+    </div>
+        {%if field.help_text%}
+                <small class="form-text text-muted mb-4">
+                    {{field.help_text}}
+                </small>
+        {%endif%}        
+{% endfor%}

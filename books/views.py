@@ -3,14 +3,15 @@ from .models import Book, Comment, Rating
 from .filter import BookFilter
 from django.shortcuts import render, get_object_or_404, redirect
 from django.db.models import Avg, Count
+from .forms import BookForm
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 
 
 
 def home_page(request):
-    books = Book.objects.all().order_by('-rating_book__rating')[:6]
-
+    books = Book.objects.annotate(avg_book=Avg('rating_book__rating')).order_by('-avg_book')[:6]
 
     context={'books' : books}
     return render(request, 'home.html', context)
@@ -37,7 +38,7 @@ def book_detail(request, slug):
                 )
             except:
                 pass    
-    #comments = Comment.objects.all().filter(post_book__exact=book)
+
     rating_mod = book.rating_book
     rating = rating_mod.aggregate(Avg('rating'))
     people = {
@@ -51,3 +52,20 @@ def book_detail(request, slug):
 
     context = {'book' : book, 'rating' : rating, 'people':people}
     return render(request, 'book_detail.html', context)
+
+@login_required
+def book_add(request):
+    if request.method == "POST":
+        form = BookForm(request.POST)
+        if form.is_valid():
+            book = form.save(commit=False)
+            book.uploaded_by = request.user
+            book.save()
+
+            return redirect('books:book_detail', slug=book.slug)
+    else:
+        form = BookForm()
+
+    context = {'form':form}
+    return render(request, 'book_add.html', context)            
+
