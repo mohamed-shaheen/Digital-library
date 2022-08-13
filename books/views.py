@@ -56,7 +56,7 @@ def book_detail(request, slug):
 @login_required
 def book_add(request):
     if request.method == "POST":
-        form = BookForm(request.POST)
+        form = BookForm(request.POST, request.FILES)
         if form.is_valid():
             book = form.save(commit=False)
             book.uploaded_by = request.user

@@ -22,7 +22,7 @@
                  <div class="card my-2" >
                       <div class="card-body">
                             <h3 class="card-title">Add Book</h3> 
-                            <form method="post" novalidate >
+                            <form method="post" enctype="multipart/form-data" novalidate >
                                 {% csrf_token %}
                                 {% include  'includes/share-book-form.html' %}
                                 
