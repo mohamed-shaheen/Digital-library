@@ -1,7 +1,7 @@
 # library Zone
 
 
-<h3 align="center">a platform saves electronic book collections and holdings of other kinds of materials, users can download books or share the book they have.</h3>
+<h3 align="center">a platform saves electronic book collections and holdings of other kinds of materials, users can download books and share the book they have.</h3>
 
 - **Home page.**
 ![home page](https://user-images.githubusercontent.com/73441839/197551128-4106cf95-7c05-4827-ad41-45bb37d9b022.jpeg)
